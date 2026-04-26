@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Yuji Software のプログラム公開サイト。Mac / Windows 向けの小さな便利ツールを配布しています。">
+    <title>Yuji Software | プログラム公開サイト</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Yuji Software">
+        <span class="brand-mark">YS</span>
+        <span>Yuji Software</span>
+      </a>
+      <nav class="site-nav" aria-label="主要メニュー">
+        <a href="#programs">プログラム</a>
+        <a href="#updates">更新履歴</a>
+        <a href="#support">サポート</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-image" src="assets/hero-software-workspace.png" alt="ソフトウェア公開サイトのイメージ">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Mac / Windows utility software</p>
+          <h1 id="hero-title">日々の作業を少し軽くする小さなプログラム</h1>
+          <p class="hero-lead">
+            個人開発の便利ツールを配布しています。最新バージョン、対応環境、更新履歴を確認してダウンロードできます。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#programs">プログラムを見る</a>
+            <a class="button secondary" href="#updates">更新履歴</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section intro" aria-label="サイト概要">
+        <div class="section-inner intro-grid">
+          <div>
+            <p class="section-kicker">Release library</p>
+            <h2>公開中のソフトを一覧で管理</h2>
+          </div>
+          <p>
+            ダウンロードリンクや説明文は後から差し替えやすい作りです。WordPress の固定ページに移す場合も、内容を整理した紹介ページとしてそのまま使えます。
+          </p>
+        </div>
+      </section>
+
+      <section class="section programs" id="programs" aria-labelledby="programs-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Programs</p>
+              <h2 id="programs-title">公開プログラム</h2>
+            </div>
+            <div class="filter-group" aria-label="表示フィルター">
+              <button class="filter active" type="button" data-filter="all">すべて</button>
+              <button class="filter" type="button" data-filter="mac">Mac</button>
+              <button class="filter" type="button" data-filter="windows">Windows</button>
+            </div>
+          </div>
+          <div class="program-grid" id="program-list"></div>
+        </div>
+      </section>
+
+      <section class="section updates" id="updates" aria-labelledby="updates-title">
+        <div class="section-inner two-column">
+          <div>
+            <p class="section-kicker">Changelog</p>
+            <h2 id="updates-title">更新履歴</h2>
+          </div>
+          <ol class="timeline">
+            <li>
+              <time datetime="2026-04-26">2026.04.26</time>
+              <span>プログラム公開用サイトの初期版を作成。</span>
+            </li>
+            <li>
+              <time datetime="2026-04-20">2026.04.20</time>
+              <span>配布ファイル、動作環境、説明文の掲載枠を準備。</span>
+            </li>
+            <li>
+              <time datetime="2026-04-10">2026.04.10</time>
+              <span>Mac / Windows 向けユーティリティの公開ページを整理。</span>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section support" id="support" aria-labelledby="support-title">
+        <div class="section-inner support-band">
+          <div>
+            <p class="section-kicker">Support</p>
+            <h2 id="support-title">不具合報告・問い合わせ</h2>
+            <p>
+              使っているOS、プログラム名、バージョン、発生した状況を添えてご連絡ください。再現手順があると確認しやすくなります。
+            </p>
+          </div>
+          <a class="button primary" href="https://yuji19605.wordpress.com/" target="_blank" rel="noreferrer">WordPressへ</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>&copy; <span id="year"></span> Yuji Software</span>
+      <a href="#top">ページ上部へ</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
