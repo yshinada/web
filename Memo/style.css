@@ -180,36 +180,6 @@ button:active {
   gap: 10px;
 }
 
-.token-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin: 10px 0 18px;
-}
-
-.remember-token {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0;
-  color: var(--ink);
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-.remember-token input {
-  width: 18px;
-  min-height: 18px;
-  margin: 0;
-}
-
-.small-button {
-  min-height: 38px;
-  padding: 0 12px;
-  font-size: 0.86rem;
-}
-
 @media (max-width: 520px) {
   .app-shell {
     padding: 16px;
@@ -225,10 +195,5 @@ button:active {
 
   button {
     width: 100%;
-  }
-
-  .token-actions {
-    align-items: stretch;
-    flex-direction: column;
   }
 }
