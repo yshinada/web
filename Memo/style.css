@@ -111,6 +111,10 @@ input {
   padding: 0 14px;
 }
 
+#github-token {
+  margin-bottom: 18px;
+}
+
 textarea {
   min-height: 260px;
   margin-bottom: 14px;
