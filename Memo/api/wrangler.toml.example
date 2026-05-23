@@ -1,0 +1,10 @@
+name = "memo-api"
+main = "worker.js"
+compatibility_date = "2026-05-23"
+
+[vars]
+OWNER = "yshinada"
+REPO = "web"
+BRANCH = "main"
+MEMO_PATH = "Memo/memo.txt"
+MEMO_PASSWORD = "papa"
