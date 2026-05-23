@@ -24,3 +24,4 @@ Upload these files to the repository used for the site, then enable GitHub Pages
 This is a static page. The memo body is saved to `Memo/memo.txt` through the GitHub Contents API.
 
 Saving requires a GitHub token with write access to repository contents.
+The page can remember the token in the browser so trusted users do not need to enter it every time.
