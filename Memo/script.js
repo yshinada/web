@@ -3,6 +3,7 @@ const OWNER = "yshinada";
 const REPO = "web";
 const BRANCH = "main";
 const MEMO_PATH = "Memo/memo.txt";
+const TOKEN_STORAGE_KEY = "memo-github-token";
 const API_URL = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${MEMO_PATH}`;
 const RAW_URL = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${MEMO_PATH}`;
 
@@ -11,10 +12,14 @@ const passwordInput = document.querySelector("#password");
 const message = document.querySelector("#message");
 const editor = document.querySelector("#editor");
 const tokenInput = document.querySelector("#github-token");
+const rememberTokenInput = document.querySelector("#remember-token");
+const clearTokenButton = document.querySelector("#clear-token-button");
 const memoInput = document.querySelector("#memo");
 const saveButton = document.querySelector("#save-button");
 const lockButton = document.querySelector("#lock-button");
 const statusText = document.querySelector("#status");
+
+tokenInput.value = localStorage.getItem(TOKEN_STORAGE_KEY) || "";
 
 function encodeBase64(text) {
   const bytes = new TextEncoder().encode(text);
@@ -80,6 +85,12 @@ async function saveMemo() {
   statusText.textContent = "GitHubに保存中です";
 
   try {
+    if (rememberTokenInput.checked) {
+      localStorage.setItem(TOKEN_STORAGE_KEY, token);
+    } else {
+      localStorage.removeItem(TOKEN_STORAGE_KEY);
+    }
+
     const sha = await getMemoSha(token);
     const body = {
       branch: BRANCH,
@@ -119,7 +130,13 @@ async function openEditor() {
   passwordInput.value = "";
   message.textContent = "";
   message.classList.remove("error");
-  tokenInput.focus();
+  tokenInput.value = localStorage.getItem(TOKEN_STORAGE_KEY) || tokenInput.value;
+
+  if (tokenInput.value) {
+    memoInput.focus();
+  } else {
+    tokenInput.focus();
+  }
 
   try {
     await loadMemo();
@@ -130,7 +147,6 @@ async function openEditor() {
 
 function lockEditor() {
   editor.hidden = true;
-  tokenInput.value = "";
   memoInput.value = "";
   statusText.textContent = "";
   passwordInput.focus();
@@ -150,6 +166,13 @@ passwordForm.addEventListener("submit", (event) => {
 });
 
 saveButton.addEventListener("click", saveMemo);
+
+clearTokenButton.addEventListener("click", () => {
+  localStorage.removeItem(TOKEN_STORAGE_KEY);
+  tokenInput.value = "";
+  statusText.textContent = "保存したTokenを削除しました";
+  tokenInput.focus();
+});
 
 memoInput.addEventListener("input", () => {
   statusText.textContent = "未保存の変更があります";
