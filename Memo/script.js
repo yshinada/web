@@ -32,6 +32,35 @@ function encodeBase64(text) {
   return btoa(binary);
 }
 
+async function createGitHubError(response, fallbackMessage) {
+  let githubMessage = "";
+
+  try {
+    const data = await response.clone().json();
+    githubMessage = data.message || "";
+  } catch {
+    githubMessage = await response.text();
+  }
+
+  if (response.status === 401) {
+    return new Error("Tokenが無効です。Clear Tokenして新しいTokenを入れてください");
+  }
+
+  if (response.status === 403) {
+    return new Error("Tokenに書き込み権限がありません。ContentsをRead and writeにしてください");
+  }
+
+  if (response.status === 404) {
+    return new Error("リポジトリが見つからないか、Tokenがこのリポジトリに許可されていません");
+  }
+
+  if (response.status === 409) {
+    return new Error("GitHub上のメモが更新されています。再読み込みしてから保存してください");
+  }
+
+  return new Error(`${fallbackMessage} (${response.status}: ${githubMessage})`);
+}
+
 async function loadMemo() {
   statusText.textContent = "読み込み中です";
 
@@ -44,7 +73,7 @@ async function loadMemo() {
   }
 
   if (!response.ok) {
-    throw new Error("メモを読み込めませんでした");
+    throw await createGitHubError(response, "メモを読み込めませんでした");
   }
 
   memoInput.value = await response.text();
@@ -65,7 +94,7 @@ async function getMemoSha(token) {
   }
 
   if (!response.ok) {
-    throw new Error("GitHubのファイル情報を取得できませんでした");
+    throw await createGitHubError(response, "GitHubのファイル情報を取得できませんでした");
   }
 
   const file = await response.json();
@@ -114,7 +143,7 @@ async function saveMemo() {
     });
 
     if (!response.ok) {
-      throw new Error("GitHubへの保存に失敗しました");
+      throw await createGitHubError(response, "GitHubへの保存に失敗しました");
     }
 
     statusText.textContent = "GitHubに保存しました";
