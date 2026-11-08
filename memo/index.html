@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="思いついたことをすぐ書ける、GitHubに保存するメモ帳。">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://api.github.com; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Memo — 手軽に、書き留める。</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app-shell"><section class="memo-panel" aria-labelledby="app-title">
+<header class="panel-header"><div><h1 id="app-title">Memo<span>.</span></h1><p class="subtitle">思いついたことを、書き留める。</p></div><a class="repo-link" href="https://github.com/yshinada/web/blob/main/memo/memo.txt" target="_blank" rel="noopener noreferrer">GitHub ↗</a></header>
+<div class="editor-bar"><label for="memo">メモ</label><span id="count">0 文字</span></div>
+<textarea id="memo" placeholder="ここから、自由に。" spellcheck="false" disabled></textarea>
+<div class="actions"><button id="save" disabled>GitHubに保存</button><button id="reload" class="secondary">再読み込み</button><button id="download" class="secondary">ダウンロード</button></div>
+<p id="status" class="status" role="status" aria-live="polite">GitHubから読み込み中…</p>
+<details id="settings"><summary>GitHub接続設定 <span id="connection">未接続</span></summary>
+<p class="help">保存先：<code>yshinada/web · memo/memo.txt</code><br>このメモと変更履歴は公開されます。</p>
+<form id="connect-form"><label for="token">GitHubアクセストークン</label><input id="token" type="password" autocomplete="off" placeholder="github_pat_…" required><div class="actions"><button type="submit">接続</button><button id="disconnect" type="button" class="secondary">切断</button></div></form>
+<p class="help"><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">トークンを作成 ↗</a>：Repository accessで <strong>web</strong> のみ選択し、Contentsを <strong>Read and write</strong> に設定してください。トークンはこの画面を開いている間だけ保持します。</p>
+</details>
+<footer>下書きはこのブラウザーに自動保存。GitHubへは保存ボタンで送信。<span>⌘ / Ctrl + S で保存</span></footer>
+</section></main><script src="script.js"></script>
+</body></html>
