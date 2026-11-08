@@ -64,7 +64,7 @@
 
 <header>
   <h1>パパ休日カレンダー &amp; 連休シミュレーター</h1>
-  <p class="desc">条件：金・土・日定休 / 5月1日 / 12月28〜29日 + 祝日・振替休日・独自休日</p>
+  <p class="desc">条件：金・土・日定休 / 5月1日 / 12月28〜29日 + 祝日・振替休日・パパ休日</p>
 </header>
 
 <div class="controls">
@@ -102,7 +102,7 @@ function render(){
  document.querySelectorAll('#paidButtons button').forEach((b,i)=>{b.classList.toggle('active',paidDays===i);b.setAttribute('aria-pressed',String(paidDays===i));});
  const list=data[currentYear][paidDays];
  document.getElementById('summaryArea').innerHTML=[['対象年',currentYear+'年'],['連休候補（重複あり）',list.length+'件'],['最長連休',Math.max(0,...list.map(x=>x.days))+'日']].map(([label,value])=>`<div class="stat-card"><div class="val">${value}</div><div class="lbl">${label}</div></div>`).join('');
- document.getElementById('cardsArea').innerHTML=list.map(item=>`<article class="holiday-card ${item.days>=7?'highlight':''}"><div class="card-header"><h2 class="card-title">${item.title}</h2><span class="badge ${item.days>=7?'long':''}">${item.isPaid?'有給あり':'有給なし'}</span></div><p><strong>${item.date}</strong></p><div class="breakdown">${item.desc}${item.custom?'<br><span class="tag tag-fixed">独自休日</span>'+item.custom:''}${item.paid?'<br><span class="tag tag-paid">有給取得日</span>'+item.paid:''}</div></article>`).join('') || '<p>該当する連休はありません。</p>';
+ document.getElementById('cardsArea').innerHTML=list.map(item=>`<article class="holiday-card ${item.days>=7?'highlight':''}"><div class="card-header"><h2 class="card-title">${item.title}</h2><span class="badge ${item.days>=7?'long':''}">${item.isPaid?'有給あり':'有給なし'}</span></div><p><strong>${item.date}</strong></p><div class="breakdown">${item.desc}${item.custom?'<br><span class="tag tag-fixed">パパ休日</span>'+item.custom:''}${item.paid?'<br><span class="tag tag-paid">有給取得日</span>'+item.paid:''}</div></article>`).join('') || '<p>該当する連休はありません。</p>';
 }
 render();
 </script>
